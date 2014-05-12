@@ -1,0 +1,20 @@
+p View1
+div
+  jt-column(ratios='1/3', gutter='2')
+    jt-column(ratios='1/2') Sub 1
+    jt-column(ratios='1/2') Sub 2
+div
+  div(jt-column='jt-column', ratios='1/3', gutter='2')
+    jt-column() Two
+    jt-column(ratios='1/2', gutter='10')
+      img(jt-column='jt-column', src='img/sol.gif')
+      img(jt-column='jt-column', src='img/sol.gif')
+      img(jt-column='jt-column', src='img/sol.gif')
+      img(jt-column='jt-column', src='img/sol.gif')
+    jt-column(ratios='1/2', gutter='10', last='true')
+      img(jt-column='jt-column', src='img/sol.gif')
+      img(jt-column='jt-column', src='img/sol.gif')
+      img(jt-column='jt-column', src='img/sol.gif')
+      img(jt-column='jt-column', src='img/sol.gif')
+div
+  div(jt-column='jt-column', ratios='1/3', gutter='2', last='true') Three
