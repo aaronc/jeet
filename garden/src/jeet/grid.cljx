@@ -10,18 +10,16 @@
   ([] (-get-span 1))
   ([ratio] (* 100 ratio)))
 
-
 (defn- -get-column [& {:keys [ratios g]
                        :or {ratios [1] g *gutter*}}]
-  (comment
-    (let [ratios (if *parent-first* ratios (reverse ratios))]
-      (loop [w 100
-             [ratio & more] ratios
-             ratios []]
-        (if ratio
-          (recur (+ (* 100 ratio) (- g) (* ratio g))
-                 more
-                 ))))))
+  (let [ratios (if (number? ratios) [ratios] ratios)
+        ratios (if *parent-first* ratios (reverse ratios))]
+    (reduce (fn [[w g] ratio]
+              (let [g (* (/ g w) 100)
+                    w (+ (* 100 ratio) (- g) (* ratio g))]
+                [w g]))
+            [100 g]
+            ratios)))
 
 (defn- -get-layout-direction []
   (if (= *layout-direction* :RTL)
@@ -100,9 +98,14 @@
                              uncycle 0 gutter :jeet.gutter}}]
   (let [ratios (or ratios 1)
         side (-get-layout-direction)
-        column-widths []
+        column-widths (-get-column :ratios ratios :gutter gutter)
         margin-l 0
-        margin-r 0]
+        margin-last 0
+        margin-r (nth column-widths 1)
+        offset (if (= 0 offset)
+                 offset
+                 (if (< offset 0)
+                   ()))]
     [(cf)
      [:&
       {:float "side"
