@@ -23,9 +23,11 @@
   "keywords": [
     "stylus",
     "scss",
+    "sass",
     "css",
     "framework",
-    "grid"
+    "grid",
+    "eyeglass-module"
   ],
   "categories": [
     "CSS",
@@ -53,5 +55,11 @@
     "email": "cory@mojotech.com"
   },
   "license": "MIT",
-  "homepage": "https://jeet.gs"
+  "homepage": "https://jeet.gs",
+  "eyeglass": {
+    "sassDir": "scss",
+    "exports": "eyeglass-exports.js",
+    "name": "jeet",
+    "needs": "^0.7.1"
+  }
 }
